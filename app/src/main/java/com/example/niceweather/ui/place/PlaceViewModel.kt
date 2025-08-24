@@ -13,6 +13,7 @@ class PlaceViewModel: ViewModel() {
 
     val placeList = ArrayList<Place>()
 
+    // Activity观察这个LiveData，而每次searchLiveData变化的税后，就会调用Repository.searchPlaces()来将结果返回给placeLiveData
     val placeLiveData = searchLiveData.switchMap { query ->
         Repository.searchPlaces(query)
     }

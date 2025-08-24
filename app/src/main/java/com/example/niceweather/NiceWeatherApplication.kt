@@ -10,7 +10,7 @@ class NiceWeatherApplication: Application() {
         //彩云天气令牌
         const val TOKEN = "mN2d3hkdiTyH3Vjd"
 
-        @SuppressLint("StaticFieldLeak")
+        @SuppressLint("StaticFieldLeak") //全局context
         lateinit var context: Context
     }
 

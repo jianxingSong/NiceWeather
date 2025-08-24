@@ -9,9 +9,9 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 object NiceWeatherNetwork {
-    private val placeService = ServiceCreator.create<PlaceService>()
+    private val placeService = ServiceCreator.create<PlaceService>() // 就提供了一个searchPlaces()方法
 
-    suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await()
+    suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await() // 挂起函数，调用PlaceService的searchPlaces()发起网络请求
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
