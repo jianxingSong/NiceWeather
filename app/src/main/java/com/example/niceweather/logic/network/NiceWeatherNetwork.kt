@@ -11,7 +11,13 @@ import kotlin.coroutines.suspendCoroutine
 object NiceWeatherNetwork {
     private val placeService = ServiceCreator.create<PlaceService>() // 就提供了一个searchPlaces()方法
 
+    private val weatherService = ServiceCreator.create<WeatherService>() // 提供了获取实时天气和未来天气的方法
+
     suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await() // 挂起函数，调用PlaceService的searchPlaces()发起网络请求
+
+    suspend fun getDailyWeather(lng: String, lat: String) = weatherService.getDailyWeather(lng, lat).await()
+
+    suspend fun getRealtimeWeather(lng: String, lat: String) = weatherService.getRealtimeWeather(lng, lat).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
